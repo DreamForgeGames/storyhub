@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contribute — Stories Hub</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body{font-family: Archivo, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:#07080b; color:#e6eef8}
+    .codebox{background:#0b0f14;color:#c9d1d9;padding:1rem;border-radius:.5rem;font-family:SFMono-Regular,Menlo,Monaco,Consolas,monospace;overflow:auto}
+    pre code{white-space:pre-wrap}
+    .muted-small{color:#9aa6b2}
+    .option-card{border:1px solid rgba(255,255,255,0.04);background:#0d1116}
+    .step{background:#0d1116;border:1px solid rgba(255,255,255,0.03);padding:1rem;border-radius:.5rem}
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <img src="assets/logo.png" alt="DreamForgeGames Logo" style="height:34px;vertical-align:middle;margin-right:.5rem" onerror="this.style.display='none'">DreamForge Games | Stories Hub
+    </a>
+    <a class="nav-link text-light" href="/">Back to Hub</a>
+  </div>
+</nav>
+<main class="container my-4">
+  <h1 class="h4">Contributing a Story</h1>
+  <p class="muted-small">Choose the path that suits you: either contribute directly with Git (recommended), or send your files via DreamForgeGames Discord and a maintainer will help. Both ways are welcome.</p>
+
+  <section class="mt-4">
+    <div class="row g-3">
+      <div class="col-md-6">
+        <div class="p-3 option-card">
+          <h3 class="h6">Path A — I can use Git (recommended)</h3>
+          <p class="muted-small">If you're comfortable with Git/GitHub, this is the fastest way. You'll add files and a JSON entry yourself.</p>
+          <a class="btn btn-sm btn-outline-light" href="#git-path">Go to Git instructions</a>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="p-3 option-card">
+          <h3 class="h6">Path B — I don't want to use Git (Discord)</h3>
+          <p class="muted-small">No problem — send your ZIP and cover in DreamForgeGames Discord and a maintainer will add everything and make the PR for you.</p>
+          <a class="btn btn-sm btn-outline-light" href="#discord-path">Go to Discord instructions</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="my-4" style="border-color: rgba(255,255,255,0.06)">
+
+  <section id="git-path">
+    <h2 class="h5">Path A — Detailed Git workflow</h2>
+    <p class="muted-small">Short checklist: fork/clone → branch → (optionally) add files under <code>/files/your-story/</code> → edit <code>stories.json</code> → commit & PR.</p>
+
+    <ol>
+      <li><strong>Install Git (if necessary):</strong> Use GitHub Desktop or install Git from <code>git-scm.com</code>. GUI tools are fine.</li>
+      <li><strong>Fork & clone:</strong>
+        <div class="codebox mt-2"><code>git clone &lt;repo-url&gt;</code></div>
+      </li>
+      <li><strong>Create a new branch:</strong>
+        <div class="codebox mt-2"><code>git checkout -b add/my-story-name</code></div>
+      </li>
+      <li><strong>Add files (optional):</strong>
+        <p class="muted-small">You may create <code>files/my-story/</code> and add <code>cover.jpg</code> and <code>my-story.zip</code>. This is optional — you can also provide an external URL in <code>downloadFile</code>.</p>
+      </li>
+      <li><strong>Edit <code>stories.json</code>:</strong> Insert a new object into the <code>stories</code> array. Keep JSON valid (no trailing commas). Example entry:
+        <div class="codebox mt-2"><pre><code>{
+  "name": "My Story",
+  "description": "Short blurb about the story",
+  "imageUrl": "files/my-story/cover.jpg",
+  "downloadFile": "files/my-story/my-story.zip",
+  "fileSize": "10.5 MB",
+  "author": "YourName",
+  "version": "1.0",
+  "tags": ["adventure"],
+  "releaseDate": "2025-10-05"
+}</code></pre></div>
+      </li>
+      <li><strong>Commit & push:</strong>
+        <div class="codebox mt-2"><code>git add files/my-story/* stories.json
+git commit -m "Add: My Story — short description"
+git push origin add/my-story-name</code></div>
+      </li>
+      <li><strong>Create a Pull Request:</strong> On GitHub, open a PR from your branch to the repo's main branch. In the PR message include a short description and whether files were uploaded to the repo or sent via Discord.</li>
+    </ol>
+
+    <h4 class="h6 mt-3">Quick examples & tips</h4>
+    <ul>
+      <li>File naming: use lowercase and hyphens, e.g. <code>files/my-story/my-story_v1.0.zip</code>.</li>
+      <li>If the ZIP is >100 MB, use Git LFS or host externally and put the URL in <code>downloadFile</code>.</li>
+      <li>Include <code>author</code> and <code>version</code> fields if possible.</li>
+    </ul>
+
+    <div class="mt-3">
+      <h5 class="h6">Validation checklist</h5>
+      <ul>
+        <li>stories.json is valid JSON.</li>
+        <li>downloadFile path exists or points to a valid URL.</li>
+        <li>If you added a cover, imageUrl points to it (or use an external image URL).</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr class="my-4" style="border-color: rgba(255,255,255,0.06)">
+
+  <section id="discord-path">
+    <h2 class="h5">Path B — Send files via DreamForgeGames Discord (no Git)</h2>
+    <p class="muted-small">If Git is too much or you'd rather have someone handle the upload, this path is for you. A maintainer will add the files and create the PR.</p>
+
+    <h4 class="h6 mt-2">What to send</h4>
+    <ul>
+      <li>The story ZIP file (recommended: include version in filename).</li>
+      <li>A cover image (optional but nice): <code>cover.jpg</code> or <code>cover.png</code>.</li>
+      <li>A short JSON snippet or the story details (name, description, author, tags, optional fileSize and releaseDate).</li>
+    </ul>
+
+    <h4 class="h6 mt-2">Suggested Discord message (copy & paste)</h4>
+    <div class="codebox mt-2"><pre><code>Hi! I'd like to contribute a story.
+
+Name: My Story
+Author: YourName
+Description: Short blurb (1-2 lines)
+Tags: adventure, puzzle
+Files: attached (my-story_v1.0.zip, cover.jpg)
+Preferred repo path: files/my-story/
+Notes: (optional install notes)</code></pre></div>
+
+    <p class="muted-small mt-2">Once a maintainer receives your files they will add them to the repository and create the Pull Request. In the PR we'll include your name and version as you specified.</p>
+
+    <h4 class="h6 mt-3">When to choose this path</h4>
+    <ul>
+      <li>You don't want to install or use Git.</li>
+      <li>Your files are large and you'd rather a maintainer handle hosting (e.g. Git LFS or external hosting).</li>
+      <li>You prefer a human to check your JSON and file paths before the PR.</li>
+    </ul>
+  </section>
+
+  <hr class="my-4" style="border-color: rgba(255,255,255,0.06)">
+
+  <section class="mt-4">
+    <h2 class="h5">Common questions</h2>
+    <ul>
+      <li><strong>Do I have to upload files to the repo?</strong> No — it's optional. You can attach them via Discord instead.</li>
+      <li><strong>What about large files?</strong> Use Git LFS or external hosting; tell the maintainer what you used.</li>
+      <li><strong>Can maintainers help me?</strong> Yes — if you send files via Discord we will prepare the PR for you.</li>
+    </ul>
+  </section>
+
+  <footer class="mt-5 muted-small">Made with ❤️ — DreamForge Games</footer>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
